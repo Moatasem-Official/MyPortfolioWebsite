@@ -183,7 +183,7 @@ const Home = ({ showHireModal, setShowHireModal }: HomeProps) => {
       <div className="max-w-7xl mx-auto px-4 md:px-6 py-12">
         <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
           <div className="bg-[#1a1a1a] p-4 rounded-lg text-center">
-            <h3 className="text-2xl font-bold text-secondary mb-1 font-mono">2+</h3>
+            <h3 className="text-2xl font-bold text-secondary mb-1 font-mono">1+</h3>
             <p className="text-textSecondary text-sm font-mono">Years of Experience</p>
           </div>
           <div className="bg-[#1a1a1a] p-4 rounded-lg text-center">
