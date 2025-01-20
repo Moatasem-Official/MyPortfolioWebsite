@@ -57,7 +57,15 @@ const ProjectDetails = () => {
 
   useEffect(() => {
     window.scrollTo(0, 0);
-  }, []);
+    // تغيير عنوان الصفحة عند فتح المشروع
+    if (project) {
+      document.title = `${project.title} | Moatasem Nagy Portfolio`;
+    }
+    // إعادة العنوان الأصلي عند مغادرة الصفحة
+    return () => {
+      document.title = 'Moatasem Nagy | Portfolio';
+    };
+  }, [project]);
 
   const handleBackClick = () => {
     navigate('/');

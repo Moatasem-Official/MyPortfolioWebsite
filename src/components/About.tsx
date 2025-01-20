@@ -179,16 +179,16 @@ const About = () => {
 
             {/* Image */}
             <motion.div
-              initial={{ opacity: 0, scale: 0.8 }}
+              initial={{ opacity: 0, scale: 0 }}
               animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.5, delay: 0.4 }}
+              transition={{ duration: 0.5 }}
               className="relative flex justify-center items-center"
             >
-              <div className="w-[250px] h-[250px] md:w-[300px] md:h-[300px] relative">
+              <div className="w-[250px] h-[250px] md:w-[300px] md:h-[300px] relative group">
                 <div className="absolute -inset-1">
                   <svg className="w-full h-full" viewBox="0 0 100 100">
                     <defs>
-                      <linearGradient id="gradient-about" x1="0%" y1="0%" x2="100%" y2="0%">
+                      <linearGradient id="gradient-about" x1="0%" y1="0%" x2="100%" y2="100%">
                         <stop offset="0%" style={{ stopColor: '#00ff87', stopOpacity: 1 }} />
                         <stop offset="50%" style={{ stopColor: '#60efff', stopOpacity: 1 }} />
                         <stop offset="100%" style={{ stopColor: '#00ff87', stopOpacity: 1 }} />
@@ -204,7 +204,7 @@ const About = () => {
                       stroke="url(#gradient-about)"
                       strokeWidth="2"
                       strokeDasharray="8,4,1,4"
-                      style={{ opacity: 1 }}
+                      className="transition-all duration-300 group-hover:stroke-[3px]"
                     />
                   </svg>
                 </div>

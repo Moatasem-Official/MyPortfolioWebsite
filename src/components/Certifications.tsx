@@ -157,9 +157,15 @@ const Certifications = () => {
               {currentCertificates.map((cert) => (
                 <motion.div
                   key={cert.id}
-                  className="bg-[#1a1a1a] rounded-xl overflow-hidden border border-secondary/10 hover:border-secondary/30 transition-all duration-500 group h-full flex flex-col hover:shadow-xl hover:shadow-secondary/10 hover:-translate-y-1"
+                  className="bg-[#1a1a1a] rounded-xl overflow-hidden relative group h-full flex flex-col hover:shadow-xl hover:shadow-secondary/10 hover:-translate-y-1 hover:scale-105 transition-all duration-500 p-3"
                   variants={itemVariants}
                 >
+                  {/* Corner spans */}
+                  <span className="absolute top-0 left-0 w-8 h-8 border-t-2 border-l-2 border-secondary/50 rounded-tl-xl transition-all duration-500 group-hover:w-12 group-hover:h-12"></span>
+                  <span className="absolute top-0 right-0 w-8 h-8 border-t-2 border-r-2 border-secondary/50 rounded-tr-xl transition-all duration-500 group-hover:w-12 group-hover:h-12"></span>
+                  <span className="absolute bottom-0 left-0 w-8 h-8 border-b-2 border-l-2 border-secondary/50 rounded-bl-xl transition-all duration-500 group-hover:w-12 group-hover:h-12"></span>
+                  <span className="absolute bottom-0 right-0 w-8 h-8 border-b-2 border-r-2 border-secondary/50 rounded-br-xl transition-all duration-500 group-hover:w-12 group-hover:h-12"></span>
+
                   <div className="p-4 flex-1 flex items-center justify-center bg-[#1a1a1a] relative overflow-hidden">
                     {/* Animated gradient background */}
                     <div className="absolute inset-0 bg-gradient-to-r from-secondary/5 via-accent/5 to-secondary/5 opacity-0 group-hover:opacity-100 transition-all duration-500 animate-gradient-x" />
@@ -209,25 +215,54 @@ const Certifications = () => {
             </motion.div>
 
             {/* Pagination */}
-            {totalPages > 1 && (
-              <div className="flex justify-center items-center gap-2 mt-8">
-                {Array.from({ length: totalPages }, (_, i) => i + 1).map((pageNumber) => (
+            <div className="mt-12 flex justify-center items-center gap-3">
+              {/* Previous Button */}
+              <motion.button
+                onClick={() => currentPage > 1 && handlePageChange(currentPage - 1)}
+                className={`w-10 h-10 rounded-xl flex items-center justify-center
+                  ${currentPage === 1 
+                    ? 'text-secondary/30 cursor-not-allowed' 
+                    : 'text-secondary hover:bg-secondary/10'
+                  } transition-all duration-300`}
+                whileHover={currentPage !== 1 ? { scale: 1.1 } : {}}
+                whileTap={currentPage !== 1 ? { scale: 0.95 } : {}}
+              >
+                ←
+              </motion.button>
+
+              {/* Page Numbers */}
+              <div className="flex items-center gap-2">
+                {Array.from({ length: totalPages }).map((_, index) => (
                   <motion.button
-                    key={pageNumber}
-                    onClick={() => handlePageChange(pageNumber)}
-                    className={`w-8 h-8 rounded-full flex items-center justify-center transition-colors ${
-                      currentPage === pageNumber
-                        ? 'bg-secondary text-primary'
-                        : 'text-secondary hover:bg-secondary/20'
-                    }`}
+                    key={index}
+                    onClick={() => handlePageChange(index + 1)}
+                    className={`w-10 h-10 rounded-xl flex items-center justify-center text-lg font-mono
+                      ${currentPage === index + 1 
+                        ? 'bg-secondary text-primary font-bold' 
+                        : 'text-secondary hover:bg-secondary/10'
+                      } transition-all duration-300`}
                     whileHover={{ scale: 1.1 }}
-                    whileTap={{ scale: 0.9 }}
+                    whileTap={{ scale: 0.95 }}
                   >
-                    {pageNumber}
+                    {index + 1}
                   </motion.button>
                 ))}
               </div>
-            )}
+
+              {/* Next Button */}
+              <motion.button
+                onClick={() => currentPage < totalPages && handlePageChange(currentPage + 1)}
+                className={`w-10 h-10 rounded-xl flex items-center justify-center
+                  ${currentPage === totalPages 
+                    ? 'text-secondary/30 cursor-not-allowed' 
+                    : 'text-secondary hover:bg-secondary/10'
+                  } transition-all duration-300`}
+                whileHover={currentPage !== totalPages ? { scale: 1.1 } : {}}
+                whileTap={currentPage !== totalPages ? { scale: 0.95 } : {}}
+              >
+                →
+              </motion.button>
+            </div>
           </motion.div>
         </div>
       </div>

@@ -76,10 +76,17 @@ const Projects = () => {
               animate="visible"
             >
               <motion.div
-                className="bg-[#1a1a1a] rounded-xl overflow-hidden border border-secondary/10 hover:border-secondary/30 transition-all duration-500 group hover:shadow-xl hover:shadow-secondary/5"
+                key={projects[0].id}
                 variants={itemVariants}
+                className="bg-[#1a1a1a] rounded-xl overflow-hidden transition-all duration-500 group hover:shadow-xl hover:shadow-secondary/5 relative"
               >
-                <div className="relative overflow-hidden h-[200px] xs:h-[250px] sm:h-[300px] md:h-[350px] group-hover:scale-[1.02] transition-all duration-500">
+                {/* Corner spans */}
+                <span className="absolute top-0 left-0 w-8 h-8 border-t-2 border-l-2 border-secondary/50 rounded-tl-xl transition-all duration-500 group-hover:w-12 group-hover:h-12 z-10"></span>
+                <span className="absolute top-0 right-0 w-8 h-8 border-t-2 border-r-2 border-secondary/50 rounded-tr-xl transition-all duration-500 group-hover:w-12 group-hover:h-12 z-10"></span>
+                <span className="absolute bottom-0 left-0 w-8 h-8 border-b-2 border-l-2 border-secondary/50 rounded-bl-xl transition-all duration-500 group-hover:w-12 group-hover:h-12 z-10"></span>
+                <span className="absolute bottom-0 right-0 w-8 h-8 border-b-2 border-r-2 border-secondary/50 rounded-br-xl transition-all duration-500 group-hover:w-12 group-hover:h-12 z-10"></span>
+
+                <div className="relative h-auto min-h-[250px] sm:min-h-[300px] md:min-h-[350px] p-4 group-hover:scale-[1.02] transition-all duration-500">
                   {projects[0].customComponent ? (
                     <div className="w-full h-full">
                       {React.createElement(projects[0].customComponent)}

@@ -1,6 +1,6 @@
 import { motion, AnimatePresence } from 'framer-motion';
 import { FaDownload, FaGithub as FaGithubIcon, FaLinkedin as FaLinkedinIcon, FaFacebook as FaFacebookIcon, FaEnvelope } from 'react-icons/fa';
-import { Dispatch, SetStateAction, useState } from 'react';
+import { Dispatch, SetStateAction, useState, useEffect } from 'react';
 import { projects } from './Projects';
 import { certifications } from './Certifications';
 import { getPublicUrl } from '../config/paths';
@@ -13,6 +13,34 @@ interface HomeProps {
 
 const Home = ({ showHireModal, setShowHireModal }: HomeProps) => {
   const [showCVModal, setShowCVModal] = useState(false);
+  const [text, setText] = useState("");
+  const fullText = "Hello I'm\nMOATASEM NAGY";
+  
+  useEffect(() => {
+    let currentIndex = 0;
+    const interval = setInterval(() => {
+      if (currentIndex <= fullText.length) {
+        setText(fullText.slice(0, currentIndex));
+        currentIndex++;
+      } else {
+        clearInterval(interval);
+      }
+    }, 100); // سرعة الكتابة
+
+    return () => clearInterval(interval);
+  }, []);
+
+  const getStyledText = (text: string) => {
+    const parts = text.split('\n');
+    return (
+      <>
+        {parts[0]}<br />
+        <span className="font-['Montserrat'] font-black text-5xl tracking-wide bg-gradient-to-r from-[#00ff87] via-[#60efff] to-[#00ff87] text-transparent bg-clip-text hover:opacity-80 transition-opacity duration-300">
+          {parts[1]}
+        </span>
+      </>
+    );
+  };
 
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -73,11 +101,14 @@ const Home = ({ showHireModal, setShowHireModal }: HomeProps) => {
               className="text-4xl md:text-6xl font-bold text-textPrimary mb-6 font-mono"
               variants={titleVariants}
             >
-              Hello I'm
-              <br />
-              <span className="text-secondary bg-clip-text text-transparent bg-gradient-to-r from-secondary to-accent">
-                MOATASEM NAGY
-              </span>
+              <motion.div
+                className="whitespace-pre-line"
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5 }}
+              >
+                {getStyledText(text)}
+              </motion.div>
             </motion.h1>
             <motion.p 
               className="text-textSecondary max-w-2xl mb-8 font-mono"

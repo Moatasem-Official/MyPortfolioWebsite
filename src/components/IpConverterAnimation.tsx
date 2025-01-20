@@ -2,9 +2,9 @@ import { motion } from 'framer-motion';
 
 const IpConverterAnimation = () => {
   return (
-    <div className="w-full h-full flex items-center justify-center bg-gradient-to-br from-primary to-[#1a1a1a] p-4 sm:p-6 md:p-8 rounded-xl">
+    <div className="w-full h-full flex items-center justify-center bg-gradient-to-br from-primary to-[#1a1a1a] py-6 px-3 rounded-xl">
       <motion.div 
-        className="relative w-full h-full min-h-[200px]"
+        className="relative w-full aspect-[4/3]"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 0.5 }}
