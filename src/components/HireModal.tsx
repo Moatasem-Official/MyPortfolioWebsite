@@ -83,7 +83,7 @@ const HireModal = ({ showModal, setShowModal }: HireModalProps) => {
       const templateParams = {
         from_name: formData.name,
         from_email: formData.email,
-        message: formData.message,
+        content: formData.message,
         to_name: 'Moatasem Nagy', // Add recipient name
       };
 

@@ -5,7 +5,7 @@ emailjs.init('gtFsuM1lJkKn1M4Ue');
 
 export const emailConfig = {
   serviceId: 'service_38o0ilm',
-  templateId: 'template_i3yozm2',
+  templateId: 'template_imq1fpd',
   publicKey: 'gtFsuM1lJkKn1M4Ue'
 };
 
